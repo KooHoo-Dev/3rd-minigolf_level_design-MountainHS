@@ -29,6 +29,7 @@ namespace Study3D.Transforms
                     // X가 90도 같은 특정 임계점을 넘으면 다른 표기로 자동전환되어서 누적이 막힙니다.
                     Vector3 euler = transform.eulerAngles; //현재 회전값을 가지고 와서
                     euler += axis * step; // 더해줍니다
+                    transform.rotation = Quaternion.Euler(euler);
                     transform.eulerAngles = euler; // 넣어 줍니다.
                     break;
                 case Method.Rotate:

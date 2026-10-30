@@ -14,13 +14,13 @@ namespace Study3D.MiniGolf
         // 회전 스피드에 제한을 활용하여 간접적으로 제어 합니다.
         public float maxAngularSpeed = 150f;
 
+        public bool IsStopped => (shotRequested == false) && slowTime >= stopDelay;
+
         private Rigidbody rBody;
         private Vector3 lastPosition; // 유저가 마지막으로 공을 건드린 위치
         private Vector3 shotVelocity; // 공의 방향 * 세기가 연산되는 변수
         private bool shotRequested;
         private float slowTime;
-
-        public bool IsStopped => (shotRequested == false) && slowTime >= stopDelay;
         
         private void Awake()
         {
@@ -36,7 +36,15 @@ namespace Study3D.MiniGolf
             {
                 shotRequested = false;
                 rBody.AddForce(shotVelocity, ForceMode.VelocityChange);
-                return;
+            }
+
+            if (rBody.linearVelocity.magnitude < stopSpeed)
+            {
+                slowTime += Time.fixedDeltaTime;
+            }
+            else
+            {
+                slowTime = 0;
             }
 
             if (rBody.linearVelocity.magnitude < stopSpeed)
@@ -71,7 +79,7 @@ namespace Study3D.MiniGolf
         }
 
         // public으로 선언해서 외부에서 호출 할 수 있도록 해줍니다.
-        public void ReturnToLasShotPosition()
+        public void ReturnToLastShotPosition()
         {
             Teleport(lastPosition);
         }

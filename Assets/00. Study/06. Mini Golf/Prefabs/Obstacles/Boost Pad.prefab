@@ -63,11 +63,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6372318686000593069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffcaefe08d5ad6e4c9f7816f70d39fd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 85535b1a84044e1daec2944df642ed8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Study3D.MiniGolf.BoostPad
-  direction: {x: 0, y: 0, z: 1}
-  acceleration: 20
+  boostDirection: {x: 0, y: 0, z: 1}
+  strength: 10
+  forceMode: 5
+  affectOppositeMovingObject: 1
 --- !u!1 &7803893918335501880
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +114,7 @@ GameObject:
   - component: {fileID: 8272234499792863556}
   - component: {fileID: 4026072843811435518}
   - component: {fileID: 750023142744708795}
-  - component: {fileID: 6364421767401409239}
+  - component: {fileID: 7984020889102919880}
   m_Layer: 0
   m_Name: Pad
   m_TagString: Untagged
@@ -192,7 +194,7 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6364421767401409239
+--- !u!114 &7984020889102919880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,8 +203,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8707915523546049517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc4ee1d4bc4713b42bfa81dac51df2fc, type: 3}
+  m_Script: {fileID: 11500000, guid: fd8dec1db32a43758418267be7b4b7b1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Study3D.Common.TextureOffsetScroller
-  speed: {x: 0, y: -1.5}
-  textureProperty: _BaseMap
+  m_EditorClassIdentifier: Assembly-CSharp::Study3D.MiniGolf.Basic.BoostPadVisual
+  padPhysics: {fileID: 5789745440232439491}
+  targetRenderer: {fileID: 750023142744708795}
+  scrollSpeed: 1
+  texturePropertyName: _BaseMap
